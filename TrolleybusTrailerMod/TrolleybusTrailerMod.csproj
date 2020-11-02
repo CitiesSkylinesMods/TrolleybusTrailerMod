@@ -65,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\TrolleybusTrailerAI.cs" />
+    <Compile Include="Patch\EditorImportTrolleyPolePatch.cs" />
+    <Compile Include="Patch\EditorMaskDropdownPatch.cs" />
+    <Compile Include="Patch\TrolleybusPatch.cs" />
     <Compile Include="Patch\TrolleybusReversePatch.cs" />
     <Compile Include="TrolleybusTrailerMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

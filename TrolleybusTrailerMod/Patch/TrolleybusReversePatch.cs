@@ -1,5 +1,4 @@
 using HarmonyLib;
-using TrolleybusTrailerMod.AI;
 using UnityEngine;
 
 namespace TrolleybusTrailerMod.Patch {
@@ -26,21 +25,6 @@ namespace TrolleybusTrailerMod.Patch {
         [HarmonyPatch(typeof(TrolleybusAI), "CachePathData")]
         public static void CachePathData(object instance, ushort vehicleID, ref Vehicle vehicleData, ushort lastSegment, byte lastLane, ushort nextSegment, byte nextLane) {
             Debug.LogError("[TrolleybusReversePatch]:FindWireConnection() Redirection failed!");
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(TrolleybusAI), "ExtraSimulationStep")]
-        public static void ExtraSimulationStep(ushort vehicleID, ref Vehicle vehicleData) {
-            ushort trailingVehicle = vehicleData.m_trailingVehicle;
-            ref var vehicles= ref VehicleManager.instance.m_vehicles.m_buffer;
-            while (trailingVehicle != 0) {
-                ref Vehicle data = ref vehicles[trailingVehicle];
-                if (data.Info && data.Info.m_subMeshes != null && data.Info.m_subMeshes.Length > 0) {
-                    (data.Info.m_vehicleAI as TrolleybusTrailerAI)?.ExtraStep(trailingVehicle, ref data, ref vehicleData);
-                }
-
-                trailingVehicle = data.m_trailingVehicle;
-            }
         }
     }
 }
