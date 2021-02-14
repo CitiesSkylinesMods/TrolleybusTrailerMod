@@ -8,10 +8,10 @@ namespace TrolleybusTrailerMod {
         public string Description { get; } = "Support Trolleybus trailers with poles at any trailer";
 
         public void OnEnabled() {
-                HarmonyHelper.DoOnHarmonyReady(() => {
-                    Debug.Log("[Trolleybus Trailer AI] Try Patch...");
-                    Patcher.PatchAll();
-                });
+            HarmonyHelper.DoOnHarmonyReady(() => {
+                Debug.Log("[Trolleybus Trailer AI] Try Patch...");
+                Patcher.PatchAll();
+            });
         }
 
         public void OnDisabled() {
